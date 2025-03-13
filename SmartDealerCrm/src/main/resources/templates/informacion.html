@@ -1,0 +1,55 @@
+{<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head"></head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <div style="margin-top: 100px;">
+
+            <img src="images/carros.png" alt="inicio" style="height: 500px; width: 100%;">
+                <div class="texto" style="
+                     position: absolute;
+                     top: 30%;
+                     right: 140px;
+                     transform: translateY(-50%);
+                     color: #2f4073;
+                     font-weight: bold;
+                     font-size: 2em;
+                     border-bottom: 3px solid #bf8d7a;
+                     ">Cuidados de Carros con una calidad excepcional.</div>
+
+                <div style="margin-top: 50px;">
+
+                    <!-- Contenedor principal -->
+                    <div class="container">
+                        <div class="row g-5">     
+                            <!-- Columna 1 -->
+                            <div class="col-md-4 columna">
+                                <img src="images/mision.png" alt="Imagen 1" class="img-columna1" style="width: 30%; height: 80px; position: relative; left: 136px;">
+                                    <div class="titulo" style='font-weight: bold;font-size: 1.5em; margin-top: 20px; text-align:center'>Misión</div><br>
+                                        <p class="parrafo" style="text-align: justify; color: gray">Brindar una experiencia única de compra de vehículos, ofreciendo una amplia gama de opciones adaptadas a diferentes gustos y presupuestos. Nos comprometemos a proporcionar asesoría especializada, financiamiento accesible y un servicio postventa de calidad, siempre con honestidad, transparencia y el compromiso de superar las expectativas de nuestros clientes.</p>
+                                    </br>
+                            </div>
+
+                            <!-- Columna 2 -->
+                            <div class="col-md-4 columna">
+                                <img src="images/vision.png" alt="Imagen 2" class="img-columna2" style="width: 25%; height: 80px; position: relative; left: 136px;">
+                                    <div class="titulo" style='font-weight: bold;font-size: 1.5em; margin-top: 20px; text-align:center'>Visión</div><br>
+                                        <p class="parrafo" style="text-align: justify; color: gray">Ser el concesionario líder en ventas de vehículos nuevos y usados en nuestra región, reconocido por ofrecer un servicio al cliente excepcional y por la calidad de los productos que ofrecemos.Buscamos ser la opción preferida de nuestros clientes, brindando soluciones de movilidad que se adapten a sus necesidades y aspiraciones. </p>
+                                        </div>
+
+                                        <!-- Columna 3 -->
+                                        <div class="col-md-4 columna">
+                                            <img src="images/empleados.png" alt="Imagen 3" class="img-columna3" style="width: 30%; height: 80px; position: relative; left: 136px;">
+                                                <div class="titulo" style='font-weight: bold;font-size: 1.5em; margin-top: 20px; text-align:center'>Empleados y Servicios</div><br>
+                                                    <p class="parrafo" style="text-align: justify; color: gray">En nuestro concesionario, ofrecemos una amplia gama de servicios para garantizar la mejor experiencia de compra y postventa. Disponemos de vehículos nuevos y usados, asesoría financiera, y opciones de financiamiento personalizadas para cada cliente. Además, contamos con un equipo de técnicos especializados que brindan mantenimiento preventivo y reparaciones de alta calidad, asegurando que cada vehículo esté en perfectas condiciones.</p>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    <div style="margin-top: 100px;"></div>
+                                                    </div>
+
+                                                    </div>
+                                                    <footer th:replace="layout/plantilla :: footer"></footer>
+                                                    </body>
+                                                    </html>
