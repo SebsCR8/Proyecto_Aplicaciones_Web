@@ -1,0 +1,138 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <style>
+            .texto {
+                position: absolute;
+                top: 20%;
+                right: 100px;
+                transform: translateY(-50%);
+                color: white;
+                font-weight: bold;
+                font-size: 2em;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        <style>
+            .texto {
+                position: absolute;
+                top: 20%;
+                right: 100px;
+                transform: translateY(-50%);
+                color: white;
+                font-weight: bold;
+                font-size: 2em;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            }
+
+            .btn-agendar {
+                position: absolute;
+                right: 445px;
+                top: 30%;
+                transform: translateY(-50%);
+                background-color: #7193d9;
+                padding: 12px 25px;
+                color: white;
+                font-weight: bold;
+                text-decoration: none;
+                border-radius: 5px;
+                border: none;
+                font-size: 1.1em;
+                transition: background-color 0.3s, transform 0.3s;
+            }
+
+            .btn-agendar:hover {
+                background-color: #5a7bbd;
+                transform: scale(1.05);
+            }
+
+            .col-md-6 {
+                padding: 20px;
+                background-color: #f4f4f4;
+                border-radius: 8px;
+                margin-bottom: 30px;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <div style="margin-top: 0px;">
+            <img src="images/carros2.png" alt="inicio" style="height: 400px; width: 100%;">
+            <div class="texto">Tu mejor experiencia en compra de autos.</div>
+            <button class="btn-agendar" onclick="window.location.href='/cita'">Agenda tu cita</button>
+
+            <div class="container" style="margin-top: 50px;">
+                <h2 style="font-weight: bold; text-align: left; font-size: 26px; margin-bottom: 40px;">Modelos destacados</h2>
+                
+                <div class="accordion" id="experienciasAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingAudi">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAudi" aria-expanded="true" aria-controls="collapseAudi">
+                                Audi
+                            </button>
+                        </h2>
+                        <div id="collapseAudi" class="accordion-collapse collapse show" aria-labelledby="headingAudi" data-bs-parent="#experienciasAccordion">
+                            <div class="accordion-body">
+                                <p>Lujo, innovación y tecnología de punta definen a Audi, ofreciendo una experiencia de conducción inigualable.</p>
+                                <img src="images/audi.png" alt="Audi"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingChevrolet">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseChevrolet" aria-expanded="false" aria-controls="collapseChevrolet">
+                                Chevrolet
+                            </button>
+                        </h2>
+                        <div id="collapseChevrolet" class="accordion-collapse collapse" aria-labelledby="headingChevrolet" data-bs-parent="#experienciasAccordion">
+                            <div class="accordion-body">
+                                <p>Rendimiento, confiabilidad y diseño innovador hacen de Chevrolet una de las marcas más populares del mundo.</p>
+                                <img src="images/chevrolet.png" alt="Chevrolet"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingMitsubishi">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMitsubishi" aria-expanded="false" aria-controls="collapseMitsubishi">
+                                Mitsubishi
+                            </button>
+                        </h2>
+                        <div id="collapseMitsubishi" class="accordion-collapse collapse" aria-labelledby="headingMitsubishi" data-bs-parent="#experienciasAccordion">
+                            <div class="accordion-body">
+                                <p>Diseñados para aventura y resistencia, los vehículos Mitsubishi destacan por su versatilidad y eficiencia.</p>
+                                <img src="images/mitsubishi.png" alt="Mitsubishi"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingHyundai">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHyundai" aria-expanded="false" aria-controls="collapseHyundai">
+                                Hyundai
+                            </button>
+                        </h2>
+                        <div id="collapseHyundai" class="accordion-collapse collapse" aria-labelledby="headingHyundai" data-bs-parent="#experienciasAccordion">
+                            <div class="accordion-body">
+                                <p>Hyundai combina estilo moderno, seguridad avanzada y eficiencia energética para una experiencia superior en la carretera.</p>
+                                <img src="images/hyundai.png" alt="Hyundai"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-bottom: 40px;"></div>
+
+        <footer th:replace="layout/plantilla :: footer"></footer>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    </body>
+</html>
