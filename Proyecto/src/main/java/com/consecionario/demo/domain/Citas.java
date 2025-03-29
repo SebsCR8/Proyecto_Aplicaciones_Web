@@ -1,51 +1,61 @@
 package com.consecionario.demo.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import java.util.Date;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import jakarta.persistence.Transient;
+
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "Citas")
 @Data
-@NoArgsConstructor
-public class Citas {
-    
+public class Citas implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCita; 
-    
-    @Column(name = "id_carro")
-    private Integer idCarro;
-    
-    @Column(name = "fecha_cita", nullable = false)
+    @Column(name = "ID_Citas")
+    private Integer idCitas;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_Usuario", nullable = false)
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_Auto", nullable = false)
+    private Auto auto;
+
+    @Column(name = "Enganche", nullable = false)
+    private String enganche;
+
+    @Column(name = "TasaInteres", nullable = false)
+    private String tasaInteres;
+
+    @Column(name = "Plazo", nullable = false)
+    private Integer plazo;
+
+    @Column(name = "PagoMensual", nullable = false)
+    private String pagoMensual;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "FechaCita", nullable = false)
     private Date fechaCita;
-    
-    @Column(name = "tipo_servicio")
-    private String tipoServicio;
-    
-    @Column(name = "notas")
-    private String notas;
-    
-    // Campos transitorios (no en BD)
-    @Transient private String marca;
-    @Transient private String modelo;
-    @Transient private String año;
-    @Transient private String placa;
-    @Transient private String telefonoContacto;
-    @Transient private String motivo;
 
-    public Citas(int idCarro, Date fechaCita, String tipoServicio, String notas) {
-        this.idCarro = idCarro;
+
+    public Citas(Usuario usuario, Auto auto, String enganche, String tasaInteres, Integer plazo, String pagoMensual, Date fechaCita) {
+        this.usuario = usuario;
+        this.auto = auto;
+        this.enganche = enganche;
+        this.tasaInteres = tasaInteres;
+        this.plazo = plazo;
+        this.pagoMensual = pagoMensual;
         this.fechaCita = fechaCita;
-        this.tipoServicio = tipoServicio;
-        this.notas = notas;
     }
-}
+    
+    
 
+    public Citas() {
+    }
+
+}

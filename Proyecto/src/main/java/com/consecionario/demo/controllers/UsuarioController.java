@@ -5,39 +5,39 @@ package com.consecionario.demo.controllers;
  *
  * @author sebas
  */
-import com.consecionario.demo.domain.Cliente;
-import com.consecionario.demo.services.ClienteService;
+import com.consecionario.demo.domain.Usuario;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import com.consecionario.demo.services.UsuarioService;
 
 @RestController
 @RequestMapping("/clientes")
 @CrossOrigin(origins = "*")
-public class ClienteController {
-    private final ClienteService clienteService;
+public class UsuarioController {
+    private final UsuarioService clienteService;
 
-    public ClienteController(ClienteService clienteService) {
+    public UsuarioController(UsuarioService clienteService) {
         this.clienteService = clienteService;
     }
 
     @GetMapping
-    public List<Cliente> obtenerTodos() {
+    public List<Usuario> obtenerTodos() {
         return clienteService.listarClientes();
     }
 
     @GetMapping("/{id}")
-    public Cliente obtenerPorId(@PathVariable Long id) {
+    public Usuario obtenerPorId(@PathVariable Long id) {
         return clienteService.obtenerClientePorId(id);
     }
 
     @PostMapping
-    public Cliente agregarCliente(@RequestBody Cliente cliente) {
+    public Usuario agregarCliente(@RequestBody Usuario cliente) {
         return clienteService.guardarCliente(cliente);
     }
 
     @PutMapping("/{id}")
-    public Cliente actualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
+    public Usuario actualizarCliente(@PathVariable Long id, @RequestBody Usuario cliente) {
         return clienteService.actualizarCliente(id, cliente);
     }
 
