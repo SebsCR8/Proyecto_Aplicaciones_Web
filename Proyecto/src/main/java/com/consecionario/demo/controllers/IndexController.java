@@ -12,5 +12,11 @@ public class IndexController {
         model.addAttribute("attribute", "value");
         return "index";
     }
+    
+    @RequestMapping("/citas")
+    public String citas(Model model){
+    model.addAttribute("attribute, value");
+    return "citas";
+    }
 
 }
