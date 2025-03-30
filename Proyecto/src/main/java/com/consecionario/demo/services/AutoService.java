@@ -14,4 +14,6 @@ public interface AutoService {
     Auto guardarAuto(Auto auto);
     Auto actualizarAuto(Long id, Auto auto);
     void eliminarAuto(Long id);
+
+   
 }

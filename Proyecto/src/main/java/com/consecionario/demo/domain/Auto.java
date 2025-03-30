@@ -20,7 +20,7 @@ public class Auto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Auto")
-    private Integer idAuto; // Primary key
+    private int idAuto; // Primary key
 
     @Column(name = "Modelo", nullable = false)
     private String modelo;
@@ -52,7 +52,8 @@ public class Auto implements Serializable {
         this.especificaciones = especificaciones;
     }
 
-    public void setId(Long id) {
-    }
-
 }
+
+
+
+

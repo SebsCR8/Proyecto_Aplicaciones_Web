@@ -10,5 +10,5 @@ public interface CitasService {
     List<Citas> getCitas(boolean activas);
     Citas getCitas(Citas citas);
     List<Citas> obtenerTodasLasCitas();
-    void guardarCitas(Citas citas); // Nuevo método
+    void guardarCitas(Citas citas); 
 }

@@ -8,6 +8,7 @@ import com.consecionario.demo.domain.Auto;
 import com.consecionario.demo.repositories.AutoRepository;
 import org.springframework.stereotype.Service;
 import com.consecionario.demo.services.AutoService;
+import jakarta.transaction.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -19,6 +20,7 @@ public class AutoServiceImp implements AutoService {
     public AutoServiceImp(AutoRepository autoRepository) {
         this.autoRepository = autoRepository;
     }
+    
 
     @Override
     public List<Auto> listarAutos() {
@@ -41,7 +43,6 @@ public class AutoServiceImp implements AutoService {
         if (!autoRepository.existsById(id)) {
             throw new EntityNotFoundException("Auto no encontrado con ID: " + id);
         }
-        auto.setId(id);
         return autoRepository.save(auto);
     }
 
