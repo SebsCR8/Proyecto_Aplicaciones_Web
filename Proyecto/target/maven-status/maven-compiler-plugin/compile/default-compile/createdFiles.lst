@@ -5,8 +5,10 @@ com\consecionario\demo\controllers\IndexController.class
 com\consecionario\demo\repositories\AutoRepository.class
 com\consecionario\demo\domain\Citas.class
 com\consecionario\demo\controllers\AutoController.class
+com\consecionario\demo\services\FirebaseStorageService.class
 com\consecionario\demo\seviceimp\AutoServiceImp.class
 com\consecionario\demo\seviceimp\CitasServiceImp.class
+com\consecionario\demo\seviceimp\FirebaseStorageServiceImpl.class
 com\consecionario\demo\seviceimp\UsuarioServiceImp.class
 com\consecionario\demo\repositories\VentaRepository.class
 com\consecionario\demo\domain\Venta.class
