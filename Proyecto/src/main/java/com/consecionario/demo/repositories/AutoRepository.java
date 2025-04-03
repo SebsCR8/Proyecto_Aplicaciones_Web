@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AutoRepository extends JpaRepository<Auto, Long> {
-    // Aqui pueden ir metodos personalizados
+    @Query("SELECT a FROM Auto a WHERE a.tipo = :tipo AND a.marca.nombreMarca = :marca AND a.precio <= :precioMax")
+    List<Auto> filtrarVehiculos(@Param("tipo") String tipo,
+                                @Param("marca") String marca,
+                                @Param("precioMax") Double precioMax);
 }
 
