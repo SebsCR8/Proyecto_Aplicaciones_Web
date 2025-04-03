@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head('SmartDealer CRM')}"></head>
+    <body>
+        <main>
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h1 class="hero-title">Encuentra tu vehículo ideal</h1>
+                            <p class="hero-subtitle">Descubre nuestra amplia selección de autos nuevos y usados con las mejores opciones de financiamiento.</p>
+                            <div class="hero-buttons">
+                                <a th:href="@{/citas}" class="btn btn-primary btn-lg me-3">Agendar Prueba</a>
+                                <a th:href="@{/tipos-carro}" class="btn btn-outline-light btn-lg">Ver catalogo</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-none d-lg-block">
+                            <div class="hero-image-container">
+                                <img src="https://via.placeholder.com/600x400" alt="Vehículo destacado" class="img-fluid hero-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categorías Destacadas -->
+            <section class="categories-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <h2>Nuestras categorías</h2>
+                        <p>Encuentra el vehículo perfecto para tus necesidades</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="category-card">
+                                <div class="category-img">
+                                    <img src="https://via.placeholder.com/400x300" alt="SUVs" class="img-fluid">
+                                </div>
+                                <div class="category-content">
+                                    <h3>SUVs</h3>
+                                    <p>Vehículos espaciosos y versátiles para todo tipo de terreno</p>
+                                    <a href="#" class="btn btn-outline-primary">Ver SUVs</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="category-card">
+                                <div class="category-img">
+                                    <img src="https://via.placeholder.com/400x300" alt="Sedanes" class="img-fluid">
+                                </div>
+                                <div class="category-content">
+                                    <h3>Sedanes</h3>
+                                    <p>Elegancia y comodidad para tu día a día en la ciudad</p>
+                                    <a href="#" class="btn btn-outline-primary">Ver Sedanes</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="category-card">
+                                <div class="category-img">
+                                    <img src="https://via.placeholder.com/400x300" alt="Camionetas" class="img-fluid">
+                                </div>
+                                <div class="category-content">
+                                    <h3>Camionetas</h3>
+                                    <p>Fuerza y capacidad para tus proyectos y aventuras</p>
+                                    <a href="#" class="btn btn-outline-primary">Ver Camionetas</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vehículos Destacados -->
+            <section class="featured-vehicles-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <h2>Vehículos destacados</h2>
+                        <p>Descubre nuestras mejores ofertas</p>
+                    </div>
+                    <div class="row">
+                        <!-- Vehículo 1 -->
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="vehicle-card">
+                                <div class="vehicle-tag">Nuevo</div>
+                                <div class="vehicle-img">
+                                    <img src="https://via.placeholder.com/400x250" alt="Auto 1" class="img-fluid">
+                                </div>
+                                <div class="vehicle-content">
+                                    <h3>Toyota Corolla 2025</h3>
+                                    <div class="vehicle-features">
+                                        <span><i class="fas fa-cog"></i> Automático</span>
+                                        <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                        <span><i class="fas fa-road"></i> 0 km</span>
+                                    </div>
+                                    <div class="vehicle-price">
+                                        <span class="price">$25,000</span>
+                                        <span class="monthly">o $450/mes</span>
+                                    </div>
+                                    <div class="vehicle-buttons">
+                                        <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                        <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vehículo 2 -->
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="vehicle-card">
+                                <div class="vehicle-tag">Destacado</div>
+                                <div class="vehicle-img">
+                                    <img src="https://via.placeholder.com/400x250" alt="Auto 2" class="img-fluid">
+                                </div>
+                                <div class="vehicle-content">
+                                    <h3>Honda CR-V 2025</h3>
+                                    <div class="vehicle-features">
+                                        <span><i class="fas fa-cog"></i> Automático</span>
+                                        <span><i class="fas fa-gas-pump"></i> Híbrido</span>
+                                        <span><i class="fas fa-road"></i> 0 km</span>
+                                    </div>
+                                    <div class="vehicle-price">
+                                        <span class="price">$32,500</span>
+                                        <span class="monthly">o $580/mes</span>
+                                    </div>
+                                    <div class="vehicle-buttons">
+                                        <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                        <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vehículo 3 -->
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="vehicle-card">
+                                <div class="vehicle-tag">Oferta</div>
+                                <div class="vehicle-img">
+                                    <img src="https://via.placeholder.com/400x250" alt="Auto 3" class="img-fluid">
+                                </div>
+                                <div class="vehicle-content">
+                                    <h3>Ford Mustang 2024</h3>
+                                    <div class="vehicle-features">
+                                        <span><i class="fas fa-cog"></i> Manual</span>
+                                        <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                        <span><i class="fas fa-road"></i> 5,000 km</span>
+                                    </div>
+                                    <div class="vehicle-price">
+                                        <span class="price">$42,900</span>
+                                        <span class="monthly">o $750/mes</span>
+                                    </div>
+                                    <div class="vehicle-buttons">
+                                        <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                        <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="#" class="btn btn-primary">Ver todos los vehículos</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Servicios -->
+            <section class="services-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <h2>Nuestros servicios</h2>
+                        <p>Todo lo que necesitas para una experiencia de compra perfecta</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <h3>Financiamiento</h3>
+                                <p>Opciones de financiamiento flexibles adaptadas a tu presupuesto.</p>
+                                <a href="#" class="service-link">Simular financiamiento <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <h3>Prueba de manejo</h3>
+                                <p>Agenda una prueba de manejo para sentir la experiencia.</p>
+                                <a href="#" class="service-link">Agendar prueba <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <h3>Mantenimiento</h3>
+                                <p>Servicio técnico especializado para tu vehículo.</p>
+                                <a href="#" class="service-link">Ver servicios <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <h3>Intercambio</h3>
+                                <p>Recibimos tu vehículo usado como parte de pago.</p>
+                                <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonios -->
+            <section class="testimonials-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <h2>Testimonios</h2>
+                        <p>Lo que dicen nuestros clientes</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="testimonial-card">
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="testimonial-text">"Excelente atención y servicio. Me ayudaron a encontrar el auto perfecto para mi familia y me ofrecieron un financiamiento acorde a mi presupuesto."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-img">
+                                        <img src="https://via.placeholder.com/60x60" alt="Cliente" class="rounded-circle">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Juan Pérez</h4>
+                                        <span>Cliente desde 2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="testimonial-card">
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="testimonial-text">"El proceso de compra fue muy sencillo y transparente. Los asesores son muy profesionales y me explicaron todas las opciones disponibles."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-img">
+                                        <img src="https://via.placeholder.com/60x60" alt="Cliente" class="rounded-circle">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>María Rodríguez</h4>
+                                        <span>Cliente desde 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="testimonial-card">
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p class="testimonial-text">"El servicio de mantenimiento es excepcional. Siempre mantienen mi auto en perfecto estado y me dan recomendaciones útiles para su cuidado."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-img">
+                                        <img src="https://via.placeholder.com/60x60" alt="Cliente" class="rounded-circle">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Carlos Gómez</h4>
+                                        <span>Cliente desde 2022</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="cta-section">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8 mb-4 mb-lg-0">
+                            <h2>¿Listo para encontrar tu vehículo ideal?</h2>
+                            <p>Visítanos en nuestra concesionaria o agenda una cita con uno de nuestros asesores.</p>
+                        </div>
+                        <div class="col-lg-4 text-lg-end">
+                            <a href="#" class="btn btn-light btn-lg me-2">Contactar</a>
+                            <a href="#" class="btn btn-primary btn-lg">Agendar cita</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog Preview -->
+            <section class="blog-preview-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <h2>Nuestro blog</h2>
+                        <p>Las últimas noticias y consejos sobre automóviles</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="blog-card">
+                                <div class="blog-img">
+                                    <img src="https://via.placeholder.com/400x250" alt="Blog post" class="img-fluid">
+                                </div>
+                                <div class="blog-content">
+                                    <div class="blog-date">5 de marzo, 2025</div>
+                                    <h3>Cómo elegir el auto perfecto para tu familia</h3>
+                                    <p>Consejos prácticos para encontrar un vehículo que se adapte a las necesidades de toda tu familia.</p>
+                                    <a href="#" class="blog-link">Leer más <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="blog-card">
+                                <div class="blog-img">
+                                    <img src="https://via.placeholder.com/400x250" alt="Blog post" class="img-fluid">
+                                </div>
+                                <div class="blog-content">
+                                    <div class="blog-date">28 de febrero, 2025</div>
+                                    <h3>5 consejos para mantener tu auto como nuevo</h3>
+                                    <p>Recomendaciones para el cuidado y mantenimiento de tu vehículo para prolongar su vida útil.</p>
+                                    <a href="#" class="blog-link">Leer más <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="blog-card">
+                                <div class="blog-img">
+                                    <img src="https://via.placeholder.com/400x250" alt="Blog post" class="img-fluid">
+                                </div>
+                                <div class="blog-content">
+                                    <div class="blog-date">20 de febrero, 2025</div>
+                                    <h3>Ventajas de los vehículos híbridos y eléctricos</h3>
+                                    <p>Todo lo que necesitas saber sobre las nuevas tecnologías en automóviles y sus beneficios.</p>
+                                    <a href="#" class="blog-link">Leer más <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="#" class="btn btn-outline-primary">Ver todos los artículos</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
