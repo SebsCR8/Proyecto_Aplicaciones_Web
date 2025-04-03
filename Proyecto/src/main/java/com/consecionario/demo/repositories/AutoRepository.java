@@ -10,9 +10,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AutoRepository extends JpaRepository<Auto, Long> {
-    @Query("SELECT a FROM Auto a WHERE a.tipo = :tipo AND a.marca.nombreMarca = :marca AND a.precio <= :precioMax")
-    List<Auto> filtrarVehiculos(@Param("tipo") String tipo,
-                                @Param("marca") String marca,
-                                @Param("precioMax") Double precioMax);
+    @Query(value = "SELECT * FROM Auto a JOIN Marca m ON a.ID_Marca = m.ID_Marca " +
+               "WHERE a.Tipo = :tipo AND m.NombreMarca = :marca AND a.Precio <= :precioMax", nativeQuery = true)
+List<Auto> filtrarVehiculos(@Param("tipo") String tipo,
+                            @Param("marca") String marca,
+                            @Param("precioMax") String precioMax); 
+
 }
 
