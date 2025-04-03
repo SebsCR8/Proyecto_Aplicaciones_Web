@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      <head th:replace="~{layout/plantilla :: head('Agendar Cita')}"></head>
+    <body>
+        <main>
+            <!-- Banner de la página -->
+            <section class="page-banner">
+                <div class="container">
+                    <h1>Agendar Cita</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a th:href="@{/index}">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Agendar Cita</li>
+                        </ol>
+                    </nav>
+                </div>
+            </section>
+
+            <!-- Sección de formulario -->
+            <section class="appointment-section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="appointment-card">
+                                <div class="appointment-header">
+                                    <h2>Agenda una cita para conocer tu nuevo vehículo</h2>
+                                    <p>Completa el formulario a continuación para programar una prueba de manejo o una cita con uno de nuestros asesores.</p>
+                                </div>
+
+                                <div class="appointment-body">
+                                    <form id="appointment-form" th:action="@{/solicitar_carro}" method="post">
+                                        <div class="row">
+                                            <!-- Datos personales -->
+                                            <div class="col-lg-6">
+                                                <h3 class="form-section-title">Información personal</h3>
+
+                                                <div class="mb-3">
+                                                    <label for="idUsuario" class="form-label">ID de Usuario</label>
+                                                    <input type="number" class="form-control" id="idUsuario" name="idUsuario" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="nombre" class="form-label">Nombre completo</label>
+                                                    <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre completo" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="telefono" class="form-label">Teléfono</label>
+                                                    <input type="tel" class="form-control" id="telefono" placeholder="Ej: +1 (123) 456-7890" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Correo electrónico</label>
+                                                    <input type="email" class="form-control" id="email" placeholder="ejemplo@email.com" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="fechaCita" class="form-label">Fecha y hora preferida</label>
+                                                    <input type="datetime-local" class="form-control" id="fechaCita" name="fechaCita" required>
+                                                </div>
+                                            </div>
+
+                                            <!-- Información del vehículo y financiamiento -->
+                                            <div class="col-lg-6">
+                                                <h3 class="form-section-title">Vehículo y financiamiento</h3>
+
+                                                <div class="mb-3">
+                                                    <label for="idAuto" class="form-label">ID del Vehículo</label>
+                                                    <input type="number" class="form-control" id="idAuto" name="idAuto" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="modelo" class="form-label">Modelo de interés</label>
+                                                    <select class="form-select" id="modelo" required>
+                                                        <option value="" selected disabled>Seleccione un modelo</option>
+                                                        <option value="corolla">Toyota Corolla</option>
+                                                        <option value="crv">Honda CR-V</option>
+                                                        <option value="mustang">Ford Mustang</option>
+                                                        <option value="sentra">Nissan Sentra</option>
+                                                        <option value="tahoe">Chevrolet Tahoe</option>
+                                                        <option value="mazda3">Mazda 3</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="enganche" class="form-label">Enganche ($)</label>
+                                                    <input type="text" class="form-control" id="enganche" name="enganche" placeholder="Ej: 5000" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="tasaInteres" class="form-label">Tasa de interés (%)</label>
+                                                    <input type="text" class="form-control" id="tasaInteres" name="tasaInteres" placeholder="Ej: 5.75" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="plazo" class="form-label">Plazo (meses)</label>
+                                                    <select class="form-select" id="plazo" name="plazo" required>
+                                                        <option value="" selected disabled>Seleccione un plazo</option>
+                                                        <option value="24">24 meses</option>
+                                                        <option value="36">36 meses</option>
+                                                        <option value="48">48 meses</option>
+                                                        <option value="60">60 meses</option>
+                                                        <option value="72">72 meses</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="pagoMensual" class="form-label">Pago mensual estimado ($)</label>
+                                                    <input type="text" class="form-control" id="pagoMensual" name="pagoMensual" placeholder="Calculado automáticamente" readonly>
+                                                </div>
+                                            </div>
+
+                                            <!-- Tipo de cita y comentarios -->
+                                            <div class="col-12 mt-4">
+                                                <h3 class="form-section-title">Tipo de cita</h3>
+
+                                                <div class="mb-3">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="tipoCita" id="tipoPrueba" value="prueba" checked>
+                                                        <label class="form-check-label" for="tipoPrueba">Prueba de manejo</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="tipoCita" id="tipoAsesoria" value="asesoria">
+                                                        <label class="form-check-label" for="tipoAsesoria">Asesoría de financiamiento</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="tipoCita" id="tipoCompra" value="compra">
+                                                        <label class="form-check-label" for="tipoCompra">Finalizar compra</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="comentarios" class="form-label">Comentarios o preguntas adicionales</label>
+                                                    <textarea class="form-control" id="comentarios" rows="3" placeholder="Ingrese cualquier detalle adicional o pregunta que tenga"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <!-- Botones de envío -->
+                                            <div class="col-12 text-center mt-4">
+                                                <button type="button" class="btn btn-outline-secondary me-2" id="btnCalcular">Calcular pago mensual</button>
+                                                <button type="submit" class="btn btn-primary">Agendar cita</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Información adicional -->
+            <section class="info-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <div class="info-card">
+                                <div class="info-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h3>Horarios de atención</h3>
+                                <ul class="list-unstyled">
+                                    <li>Lunes a Viernes: 9:00 AM - 7:00 PM</li>
+                                    <li>Sábados: 9:00 AM - 5:00 PM</li>
+                                    <li>Domingos: 10:00 AM - 3:00 PM</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <div class="info-card">
+                                <div class="info-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <h3>Ubicación</h3>
+                                <p>Av. Principal #123, Ciudad</p>
+                                <a href="#" class="info-link">Ver mapa <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-card">
+                                <div class="info-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <h3>Contacto directo</h3>
+                                <p>¿Prefieres contactarnos directamente?</p>
+                                <p class="contact-phone">+1 (123) 456-7890</p>
+                                <p class="contact-email">citas@smartdealer.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      <head th:replace="~{layout/plantilla :: head('Catálogo de Vehículos')}"></head>
+<body>
+    <main>
+        <!-- Banner del catálogo -->
+        <section class="page-banner">
+            <div class="container">
+                <h1>Catálogo de Vehículos</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/index}">Inicio</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Vehículos</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Sección de filtros y resultados -->
+        <section class="catalog-section">
+            <div class="container">
+                <div class="row">
+                    <!-- Filtros laterales -->
+                    <div class="col-lg-3 mb-4">
+                        <div class="filter-card">
+                            <h3 class="filter-title">Filtros</h3>
+                            <div class="filter-body">
+                                <form id="filter-form" action="#" method="get">
+                                    <!-- Marca -->
+                                    <div class="filter-group">
+                                        <h4>Marca</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="toyota" id="marca-toyota">
+                                            <label class="form-check-label" for="marca-toyota">Toyota</label>
+                                        </div>
+                    
+                    <!-- Resultados del catálogo -->
+                    <div class="col-lg-9">
+                        <!-- Controles de ordenamiento y vista -->
+                        <div class="catalog-controls mb-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <span class="results-count">Mostrando <span th:text="${totalAutos != null ? totalAutos : '0'}">0</span> vehículos</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex justify-content-md-end">
+                                        <div class="me-3">
+                                            <select class="form-select form-select-sm" id="sort-options">
+                                                <option value="relevance">Relevancia</option>
+                                                <option value="price-asc">Precio: Menor a Mayor</option>
+                                                <option value="price-desc">Precio: Mayor a Menor</option>
+                                                <option value="year-desc">Año: Más recientes</option>
+                                                <option value="year-asc">Año: Más antiguos</option>
+                                            </select>
+                                        </div>
+                                        <div class="view-options">
+                                            <button class="btn btn-sm btn-outline-secondary view-grid active" title="Vista de cuadrícula">
+                                                <i class="fas fa-th"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary view-list" title="Vista de lista">
+                                                <i class="fas fa-list"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Listado de vehículos -->
+                        <div class="vehicles-grid">
+                            <div class="row" id="vehicles-container">
+                                <!-- Vehículo 1 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-tag">Nuevo</div>
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 1" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Toyota Corolla 2025</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Automático</span>
+                                                <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                                <span><i class="fas fa-road"></i> 0 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$25,000</span>
+                                                <span class="monthly">o $450/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vehículo 2 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-tag">Destacado</div>
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 2" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Honda CR-V 2025</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Automático</span>
+                                                <span><i class="fas fa-gas-pump"></i> Híbrido</span>
+                                                <span><i class="fas fa-road"></i> 0 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$32,500</span>
+                                                <span class="monthly">o $580/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vehículo 3 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-tag">Oferta</div>
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 3" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Ford Mustang 2024</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Manual</span>
+                                                <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                                <span><i class="fas fa-road"></i> 5,000 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$42,900</span>
+                                                <span class="monthly">o $750/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vehículo 4 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 4" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Nissan Sentra 2024</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Automático</span>
+                                                <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                                <span><i class="fas fa-road"></i> 2,000 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$23,500</span>
+                                                <span class="monthly">o $410/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vehículo 5 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-tag">Nuevo</div>
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 5" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Chevrolet Tahoe 2025</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Automático</span>
+                                                <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                                <span><i class="fas fa-road"></i> 0 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$55,800</span>
+                                                <span class="monthly">o $890/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vehículo 6 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-tag">Oferta</div>
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 6" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Mazda 3 2024</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Automático</span>
+                                                <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                                <span><i class="fas fa-road"></i> 1,500 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$26,700</span>
+                                                <span class="monthly">o $470/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Paginación -->
+                        <nav aria-label="Paginación de catálogo" class="mt-4">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html><div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="honda" id="marca-honda">
+                                            <label class="form-check-label" for="marca-honda">Honda</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="ford" id="marca-ford">
+                                            <label class="form-check-label" for="marca-ford">Ford</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="chevrolet" id="marca-chevrolet">
+                                            <label class="form-check-label" for="marca-chevrolet">Chevrolet</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="nissan" id="marca-nissan">
+                                            <label class="form-check-label" for="marca-nissan">Nissan</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Modelo (Año) -->
+                                    <div class="filter-group">
+                                        <h4>Año</h4>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <select class="form-select form-select-sm" id="year-from">
+                                                    <option value="">Desde</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                    <option value="2025">2025</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <select class="form-select form-select-sm" id="year-to">
+                                                    <option value="">Hasta</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                    <option value="2025">2025</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Precio -->
+                                    <div class="filter-group">
+                                        <h4>Precio</h4>
+                                        <div class="price-slider">
+                                            <div class="row mb-2">
+                                                <div class="col-6">
+                                                    <span>Min: $<span id="price-min-value">10,000</span></span>
+                                                </div>
+                                                <div class="col-6 text-end">
+                                                    <span>Max: $<span id="price-max-value">100,000</span></span>
+                                                </div>
+                                            </div>
+                                            <input type="range" class="form-range" id="price-min" min="10000" max="100000" step="1000" value="10000">
+                                            <input type="range" class="form-range" id="price-max" min="10000" max="100000" step="1000" value="100000">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Tipo de vehículo -->
+                                    <div class="filter-group">
+                                        <h4>Tipo de vehículo</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="sedan" id="tipo-sedan">
+                                            <label class="form-check-label" for="tipo-sedan">Sedán</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="suv" id="tipo-suv">
+                                            <label class="form-check-label" for="tipo-suv">SUV</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="pickup" id="tipo-pickup">
+                                            <label class="form-check-label" for="tipo-pickup">Pickup</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="deportivo" id="tipo-deportivo">
+                                            <label class="form-check-label" for="tipo-deportivo">Deportivo</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="hibrido" id="tipo-hibrido">
+                                            <label class="form-check-label" for="tipo-hibrido">Híbrido/Eléctrico</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Botones de filtro -->
+                                    <div class="filter-buttons">
+                                        <button type="submit" class="btn btn-primary btn-sm">Aplicar filtros</button>
+                                        <button type="reset" class="btn btn-outline-secondary btn-sm">Limpiar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resultados del catálogo -->
+                    <div class="col-lg-9">
+                        <!-- Controles de ordenamiento y vista -->
+                        <div class="catalog-controls mb-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <span class="results-count">Mostrando <span th:text="${totalAutos != null ? totalAutos : '0'}">0</span> vehículos</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex justify-content-md-end">
+                                        <div class="me-3">
+                                            <select class="form-select form-select-sm" id="sort-options">
+                                                <option value="relevance">Relevancia</option>
+                                                <option value="price-asc">Precio: Menor a Mayor</option>
+                                                <option value="price-desc">Precio: Mayor a Menor</option>
+                                                <option value="year-desc">Año: Más recientes</option>
+                                                <option value="year-asc">Año: Más antiguos</option>
+                                            </select>
+                                        </div>
+                                        <div class="view-options">
+                                            <button class="btn btn-sm btn-outline-secondary view-grid active" title="Vista de cuadrícula">
+                                                <i class="fas fa-th"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary view-list" title="Vista de lista">
+                                                <i class="fas fa-list"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Listado de vehículos -->
+                        <div class="vehicles-grid">
+                            <div class="row" id="vehicles-container">
+                                <!-- Vehículo 1 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-tag">Nuevo</div>
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 1" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Toyota Corolla 2025</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Automático</span>
+                                                <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                                <span><i class="fas fa-road"></i> 0 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$25,000</span>
+                                                <span class="monthly">o $450/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vehículo 2 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-tag">Destacado</div>
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 2" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Honda CR-V 2025</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Automático</span>
+                                                <span><i class="fas fa-gas-pump"></i> Híbrido</span>
+                                                <span><i class="fas fa-road"></i> 0 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$32,500</span>
+                                                <span class="monthly">o $580/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vehículo 3 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-tag">Oferta</div>
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 3" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Ford Mustang 2024</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Manual</span>
+                                                <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                                <span><i class="fas fa-road"></i> 5,000 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$42,900</span>
+                                                <span class="monthly">o $750/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vehículo 4 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 4" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Nissan Sentra 2024</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Automático</span>
+                                                <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                                <span><i class="fas fa-road"></i> 2,000 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$23,500</span>
+                                                <span class="monthly">o $410/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vehículo 5 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-tag">Nuevo</div>
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 5" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Chevrolet Tahoe 2025</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Automático</span>
+                                                <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                                <span><i class="fas fa-road"></i> 0 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$55,800</span>
+                                                <span class="monthly">o $890/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vehículo 6 -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="vehicle-card">
+                                        <div class="vehicle-tag">Oferta</div>
+                                        <div class="vehicle-img">
+                                            <img src="https://via.placeholder.com/300x200" alt="Auto 6" class="img-fluid">
+                                            <div class="vehicle-actions">
+                                                <a href="#" class="action-link" title="Agregar a favoritos">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Comparar">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" class="action-link" title="Vista rápida">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="vehicle-content">
+                                            <h3>Mazda 3 2024</h3>
+                                            <div class="vehicle-features">
+                                                <span><i class="fas fa-cog"></i> Automático</span>
+                                                <span><i class="fas fa-gas-pump"></i> Gasolina</span>
+                                                <span><i class="fas fa-road"></i> 1,500 km</span>
+                                            </div>
+                                            <div class="vehicle-price">
+                                                <span class="price">$26,700</span>
+                                                <span class="monthly">o $470/mes</span>
+                                            </div>
+                                            <div class="vehicle-buttons">
+                                                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">Agendar prueba</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Paginación -->
+                        <nav aria-label="Paginación de catálogo" class="mt-4">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+                                        

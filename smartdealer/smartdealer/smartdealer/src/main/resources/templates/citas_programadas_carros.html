@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="~{layout :: body(~{::main}, 'Citas Programadas')}">
+<body>
+    <main>
+        <!-- Banner de la página -->
+        <section class="page-banner">
+            <div class="container">
+                <h1>Citas Programadas</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/index}">Inicio</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Citas Programadas</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Sección de citas programadas -->
+        <section class="appointments-section">
+            <div class="container">
+                <!-- Alertas de confirmación/error -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+                            <span th:text="${success}">Cita programada exitosamente.</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <span th:text="${error}">Error al programar la cita.</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Filtros y buscador -->
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <h2 class="section-title">Mis citas programadas</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-md-end">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Buscar cita..." aria-label="Buscar cita">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                            <div class="ms-2">
+                                <button class="btn btn-primary" onclick="window.location.href='citas'">
+                                    <i class="fas fa-plus"></i> Nueva cita
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pestañas de estado -->
+                <ul class="nav nav-tabs mb-4" id="appointmentTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active" type="button" role="tab" aria-controls="active" aria-selected="true">Activas</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming" type="button" role="tab" aria-controls="upcoming" aria-selected="false">Próximas</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#past" type="button" role="tab" aria-controls="past" aria-selected="false">Pasadas</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="cancelled-tab" data-bs-toggle="tab" data-bs-target="#cancelled" type="button" role="tab" aria-controls="cancelled" aria-selected="false">Canceladas</button>
+                    </li>
+                </ul>
+                
+                <!-- Contenido de las pestañas -->
+                <div class="tab-content" id="appointmentTabsContent">
+                    <!-- Citas activas -->
+                    <div class="tab-pane fade show active" id="active" role="tabpanel" aria-labelledby="active-tab">
+                        <div class="table-responsive">
+                            <table class="table table-hover appointment-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Vehículo</th>
+                                        <th scope="col">Fecha y hora</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Financiamiento</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="cita : ${citas}">
+                                        <td th:text="${cita.idCitas}">1</td>
+                                        <td>
+                                            <div class="appointment-vehicle">
+                                                <img src="https://via.placeholder.com/50x30" class="appointment-vehicle-img" alt="Vehículo">
+                                                <span th:text="${cita.auto.modelo}">Toyota Corolla</span>
+                                            </div>
+                                        </td>
+                                        <td th:text="${#dates.format(cita.fechaCita, 'dd/MM/yyyy HH:mm')}">05/04/2025 15:30</td>
+                                        <td>Prueba de manejo</td>
+                                        <td>
+                                            <span th:text="'Enganche: >No tienes citas canceladas</h3>
+                                <p>Las citas que canceles aparecerán en esta sección.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de preguntas frecuentes -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title text-center mb-4">Preguntas frecuentes sobre citas</h2>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="accordion" id="accordionFaq">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        ¿Qué debo llevar a una prueba de manejo?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Para realizar una prueba de manejo, debes presentar una identificación oficial vigente y licencia de conducir válida. Te recomendamos llegar 10 minutos antes de tu cita para completar cualquier documentación necesaria.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        ¿Puedo modificar mi cita después de agendarla?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Sí, puedes modificar tu cita hasta 24 horas antes de la hora programada. Para hacerlo, simplemente accede a la sección "Mis citas" y selecciona la opción "Modificar" o "Reprogramar" + ${cita.enganche}">Enganche: $5,000</span><br>
+                                            <span th:text="'Plazo: ' + ${cita.plazo} + ' meses'">Plazo: 48 meses</span><br>
+                                            <span th:text="'Mensualidad: >No tienes citas canceladas</h3>
+                                <p>Las citas que canceles aparecerán en esta sección.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de preguntas frecuentes -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title text-center mb-4">Preguntas frecuentes sobre citas</h2>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="accordion" id="accordionFaq">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        ¿Qué debo llevar a una prueba de manejo?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Para realizar una prueba de manejo, debes presentar una identificación oficial vigente y licencia de conducir válida. Te recomendamos llegar 10 minutos antes de tu cita para completar cualquier documentación necesaria.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        ¿Puedo modificar mi cita después de agendarla?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Sí, puedes modificar tu cita hasta 24 horas antes de la hora programada. Para hacerlo, simplemente accede a la sección "Mis citas" y selecciona la opción "Modificar" o "Reprogramar" + ${cita.pagoMensual}">Mensualidad: $450</span>
+                                        </td>
+                                        <td><span class="badge bg-success">Confirmada</span></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i> Ver detalles</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i> Modificar</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="fas fa-calendar-alt me-2"></i> Reprogramar</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-times-circle me-2"></i> Cancelar</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>
+                                            <div class="appointment-vehicle">
+                                                <img src="https://via.placeholder.com/50x30" class="appointment-vehicle-img" alt="Vehículo">
+                                                <span>Honda CR-V</span>
+                                            </div>
+                                        </td>
+                                        <td>10/04/2025 11:00</td>
+                                        <td>Asesoría de financiamiento</td>
+                                        <td>
+                                            <span>Enganche: $7,500</span><br>
+                                            <span>Plazo: 60 meses</span><br>
+                                            <span>Mensualidad: $580</span>
+                                        </td>
+                                        <td><span class="badge bg-warning text-dark">Pendiente</span></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i> Ver detalles</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i> Modificar</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="fas fa-calendar-alt me-2"></i> Reprogramar</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-times-circle me-2"></i> Cancelar</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Si no hay citas activas -->
+                        <div th:if="${#lists.isEmpty(citas)}" class="text-center py-5">
+                            <div class="empty-state">
+                                <i class="fas fa-calendar-times empty-state-icon"></i>
+                                <h3>No tienes citas activas</h3>
+                                <p>Agenda tu primera cita para probar un vehículo o recibir asesoría de financiamiento.</p>
+                                <a href="citas" class="btn btn-primary">Agendar cita</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Citas próximas -->
+                    <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
+                        <div class="text-center py-5">
+                            <div class="empty-state">
+                                <i class="fas fa-calendar-day empty-state-icon"></i>
+                                <h3>No tienes citas próximas</h3>
+                                <p>Cuando programes una cita para los próximos días, aparecerá aquí.</p>
+                                <a href="citas" class="btn btn-primary">Agendar cita</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Citas pasadas -->
+                    <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-tab">
+                        <div class="text-center py-5">
+                            <div class="empty-state">
+                                <i class="fas fa-history empty-state-icon"></i>
+                                <h3>No tienes citas pasadas</h3>
+                                <p>Aquí podrás ver un historial de tus citas anteriores.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Citas canceladas -->
+                    <div class="tab-pane fade" id="cancelled" role="tabpanel" aria-labelledby="cancelled-tab">
+                        <div class="text-center py-5">
+                            <div class="empty-state">
+                                <i class="fas fa-ban empty-state-icon"></i>
+                                <h3>No tienes citas canceladas</h3>
+                                <p>Las citas que canceles aparecerán en esta sección.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de preguntas frecuentes -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title text-center mb-4">Preguntas frecuentes sobre citas</h2>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="accordion" id="accordionFaq">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        ¿Qué debo llevar a una prueba de manejo?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Para realizar una prueba de manejo, debes presentar una identificación oficial vigente y licencia de conducir válida. Te recomendamos llegar 10 minutos antes de tu cita para completar cualquier documentación necesaria.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        ¿Puedo modificar mi cita después de agendarla?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Sí, puedes modificar tu cita hasta 24 horas antes de la hora programada. Para hacerlo, simplemente accede a la sección "Mis citas" y selecciona la opción "Modificar" o "Reprogramar" en la cita que deseas cambiar.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        ¿Qué sucede si no puedo asistir a mi cita?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Si no puedes asistir a tu cita, te pedimos que la canceles con al menos 24 horas de anticipación para que podamos ofrecer ese horario a otro cliente. Puedes cancelar tu cita a través de esta plataforma o llamando a nuestro centro de atención al cliente.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        ¿Cuánto tiempo dura una prueba de manejo?
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Las pruebas de manejo tienen una duración aproximada de 30 minutos, durante los cuales podrás experimentar el rendimiento del vehículo en diferentes condiciones de manejo. Después de la prueba, tendrás tiempo para hacer preguntas a nuestros asesores.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        ¿Cómo me preparo para una asesoría de financiamiento?
+                                    </button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Para aprovechar al máximo tu asesoría de financiamiento, te recomendamos tener una idea clara de tu presupuesto mensual, el monto que puedes destinar como enganche y tus preferencias en cuanto al plazo de pago. También es útil conocer tu historial crediticio y llevar una identificación oficial.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 mb-4 mb-lg-0">
+                        <h2>¿Tienes alguna duda sobre tus citas?</h2>
+                        <p>Nuestro equipo de atención al cliente está disponible para ayudarte.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a href="#" class="btn btn-light btn-lg me-2">Contáctanos</a>
+                        <a href="citas" class="btn btn-primary btn-lg">Nueva cita</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>>No tienes citas canceladas</h3>
+                                <p>Las citas que canceles aparecerán en esta sección.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de preguntas frecuentes -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title text-center mb-4">Preguntas frecuentes sobre citas</h2>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="accordion" id="accordionFaq">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        ¿Qué debo llevar a una prueba de manejo?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Para realizar una prueba de manejo, debes presentar una identificación oficial vigente y licencia de conducir válida. Te recomendamos llegar 10 minutos antes de tu cita para completar cualquier documentación necesaria.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        ¿Puedo modificar mi cita después de agendarla?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Sí, puedes modificar tu cita hasta 24 horas antes de la hora programada. Para hacerlo, simplemente accede a la sección "Mis citas" y selecciona la opción "Modificar" o "Reprogramar" en la cita que deseas cambiar.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        ¿Qué sucede si no puedo asistir a mi cita?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Si no puedes asistir a tu cita, te pedimos que la canceles con al menos 24 horas de anticipación para que podamos ofrecer ese horario a otro cliente. Puedes cancelar tu cita a través de esta plataforma o llamando a nuestro centro de atención al cliente.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        ¿Cuánto tiempo dura una prueba de manejo?
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Las pruebas de manejo tienen una duración aproximada de 30 minutos, durante los cuales podrás experimentar el rendimiento del vehículo en diferentes condiciones de manejo. Después de la prueba, tendrás tiempo para hacer preguntas a nuestros asesores.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        ¿Cómo me preparo para una asesoría de financiamiento?
+                                    </button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-body">
+                                        Para aprovechar al máximo tu asesoría de financiamiento, te recomendamos tener una idea clara de tu presupuesto mensual, el monto que puedes destinar como enganche y tus preferencias en cuanto al plazo de pago. También es útil conocer tu historial crediticio y llevar una identificación oficial.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 mb-4 mb-lg-0">
+                        <h2>¿Tienes alguna duda sobre tus citas?</h2>
+                        <p>Nuestro equipo de atención al cliente está disponible para ayudarte.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a href="#" class="btn btn-light btn-lg me-2">Contáctanos</a>
+                        <a href="citas" class="btn btn-primary btn-lg">Nueva cita</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
