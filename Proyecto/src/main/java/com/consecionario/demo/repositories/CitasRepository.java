@@ -6,19 +6,19 @@ package com.consecionario.demo.repositories;
  */
 
 import com.consecionario.demo.domain.Citas;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CitasRepository extends JpaRepository<Citas, Integer> {
-   
-    @Query("SELECT c FROM Citas c WHERE c.usuario.id = :idUsuario")
-    List<Citas> findByUsuario(@Param("idUsuario") Integer idUsuario);
 
-    
-    @Query("SELECT c FROM Citas c WHERE c.auto.id = :idAuto")
-    List<Citas> findByAuto(@Param("idAuto") Integer idAuto);
+    // Consulta para obtener citas con datos completos del usuario y auto
+    @Query("SELECT c FROM Citas c JOIN FETCH c.usuario JOIN FETCH c.auto")
+    List<Citas> obtenerCitasConDetalles();
 
-    
-    @Query("SELECT c FROM Citas c WHERE c.enganche >= :minEnganche")
-    List<Citas> findByEngancheMayorA(@Param("minEnganche") Double minEnganche);
+    // filtros útiles
+    List<Citas> findByUsuarioId(Integer idUsuario);
+    List<Citas> findByAutoId(Integer idAuto);
 }
